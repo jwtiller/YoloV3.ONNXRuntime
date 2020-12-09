@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30626.31
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoloV3.ONNXRuntime", "YoloV3.ONNXRuntime\YoloV3.ONNXRuntime.csproj", "{68497863-E2C4-4B2C-9CC2-F2676FFCC164}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example.csproj", "{19D854CB-DF55-4F7C-9B91-9C3B14365B13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68497863-E2C4-4B2C-9CC2-F2676FFCC164}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68497863-E2C4-4B2C-9CC2-F2676FFCC164}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68497863-E2C4-4B2C-9CC2-F2676FFCC164}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68497863-E2C4-4B2C-9CC2-F2676FFCC164}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19D854CB-DF55-4F7C-9B91-9C3B14365B13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19D854CB-DF55-4F7C-9B91-9C3B14365B13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19D854CB-DF55-4F7C-9B91-9C3B14365B13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19D854CB-DF55-4F7C-9B91-9C3B14365B13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35D760F5-23F2-45CD-A63D-E4D5F2C50A5D}
+	EndGlobalSection
+EndGlobal
