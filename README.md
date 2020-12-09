@@ -11,3 +11,6 @@ Pretrained model available at https://github.com/onnx/models/blob/master/vision/
 ## Roadmap
 - Finsish library
 - Create Xamarin.Forms control running real-time YOLOv3 detection across devices using same onnx-model
+
+
+**contributions are welcome**
