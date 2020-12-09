@@ -1,0 +1,6 @@
+vs
+obj
+debug
+release
+bin
+*.onnx
