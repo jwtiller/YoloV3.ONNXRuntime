@@ -58,5 +58,27 @@ namespace YoloV3.ONNXRuntime
             input.ScalePixels(image.PeekPixels(), SKFilterQuality.High);
             return image;
         }
+
+        public  static float IntersectionOverUnion(this YoloBoxRectangle boundingBoxA, YoloBoxRectangle boundingBoxB)
+        {
+            var areaA = boundingBoxA.Width * boundingBoxA.Height;
+
+            if (areaA <= 0)
+                return 0;
+
+            var areaB = boundingBoxB.Width * boundingBoxB.Height;
+
+            if (areaB <= 0)
+                return 0;
+
+            var minX = Math.Max(boundingBoxA.TopLeft.X, boundingBoxB.TopLeft.X);
+            var minY = Math.Max(boundingBoxA.TopLeft.Y, boundingBoxB.TopLeft.Y);
+            var maxX = Math.Min(boundingBoxA.TopRight.X, boundingBoxB.TopRight.X);
+            var maxY = Math.Min(boundingBoxA.BottomRight.Y, boundingBoxB.BottomRight.Y);
+
+            var intersectionArea = Math.Max(maxY - minY, 0) * Math.Max(maxX - minX, 0);
+
+            return (float)intersectionArea / (areaA + areaB - intersectionArea);
+        }
     }
 }
