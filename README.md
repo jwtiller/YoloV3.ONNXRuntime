@@ -5,9 +5,7 @@ Pretrained model available at https://github.com/onnx/models/blob/master/vision/
 
 ## Known issues / remaining tasks
 1. bounding boxes are not accurate
-2. unit tests
-3. return boxes from library
-4. create nuget package
+2. create nuget package
 
 
 ## Roadmap
