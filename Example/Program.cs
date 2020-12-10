@@ -14,7 +14,11 @@ namespace Example
         {
             foreach (var image in Directory.GetFiles("images"))
             {
-                _yoloV3Onnx.Run(image);
+                var skImage = SKImage.FromEncodedData(new MemoryStream(File.ReadAllBytes(image)));
+                var result = _yoloV3Onnx.Detect(skImage);
+
+                var skImageResult = skImage.Resize(416,416).DrawRectangles(result);
+                skImageResult.SaveToFile($"{Guid.NewGuid()}.png");
             }
         }
     }

@@ -21,11 +21,13 @@ namespace YoloV3.ONNXRuntime
             _session = new InferenceSession(File.ReadAllBytes(modelFile));
             _labels = File.ReadAllLines(labelFile);
         }
-        public void Run(string file)
-        {
-            var image = SKImage.FromEncodedData(new MemoryStream(File.ReadAllBytes(file)));
-            image = Resize(image, 416, 416);
 
+        public IList<YoloBoxRectangle> Detect(SKImage image)
+        {
+            if (image.Width != 416 || image.Height != 416)
+            {
+                image = image.Resize(416, 416);
+            }
             var imageData = ImageToFloats(image);
             var tensor1 = new DenseTensor<float>(imageData, new int[] { 1, 416, 416, 3 });
             var container = new List<NamedOnnxValue>();
@@ -43,25 +45,17 @@ namespace YoloV3.ONNXRuntime
 
             var rects = allBoxes.Select(x => x.Rectangle).ToList();
             var filtered = FilterBoundingBoxes(rects, 30, 0.2f);
-            VisualizeDebug(image,filtered);
+
+            return filtered;
         }
-
-        private void VisualizeDebug(SKImage image, IList<YoloBoxRectangle> rectangles)
+        public IList<YoloBoxRectangle> Detect(byte[] image)
         {
-            var surface = SKSurface.Create(new SKImageInfo(416, 416));
-            var canvas = surface.Canvas;
-            canvas.DrawImage(image,0,0);
-            var paint = new SKPaint { IsAntialias = true, Color = SKColor.Parse("#f42069"), Style = SKPaintStyle.Stroke };
-            foreach (var rectangle in rectangles)
-            {
-
-                canvas.DrawRect(rectangle.X, rectangle.Y, rectangle.Width, rectangle.Height, paint);
-            }
-
-            using (var fileStream = new FileStream($"debug-{Guid.NewGuid()}.png",FileMode.Create))
-            {
-                surface.Snapshot().Encode(SKEncodedImageFormat.Png,100).SaveTo(fileStream);
-            }
+            return Detect(SKImage.FromEncodedData(new MemoryStream(image)));
+        }
+        public IList<YoloBoxRectangle> Detect(string imageFile)
+        {
+            var image = SKImage.FromEncodedData(new MemoryStream(File.ReadAllBytes(imageFile)));
+            return Detect(image);
         }
 
         private static float IntersectionOverUnion(YoloBoxRectangle boundingBoxA, YoloBoxRectangle boundingBoxB)
@@ -216,12 +210,5 @@ namespace YoloV3.ONNXRuntime
             return floats;
         }
 
-        private static SKImage Resize(SKImage input, int width, int height)
-        {
-            var imageInfo = new SKImageInfo(width, height);
-            SKImage image = SKImage.Create(imageInfo);
-            input.ScalePixels(image.PeekPixels(), SKFilterQuality.High);
-            return image;
-        }
     }
 }
