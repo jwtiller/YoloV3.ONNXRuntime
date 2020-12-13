@@ -24,12 +24,12 @@ namespace YoloV3.ONNXRuntime
 
         public IList<YoloBoxRectangle> Detect(SKImage image)
         {
-            if (image.Width != 416 || image.Height != 416)
+            if (image.Width != Constants.YoloImage.Width || image.Height != Constants.YoloImage.Height)
             {
-                image = image.Resize(416, 416);
+                image = image.Resize(Constants.YoloImage.Width, Constants.YoloImage.Height);
             }
             var imageData = ImageToFloats(image);
-            var tensor1 = new DenseTensor<float>(imageData, new int[] { 1, 416, 416, 3 });
+            var tensor1 = new DenseTensor<float>(imageData, new int[] { 1, Constants.YoloImage.Width, Constants.YoloImage.Height, 3 });
             var container = new List<NamedOnnxValue>();
             container.Add(NamedOnnxValue.CreateFromTensor<float>("input_1", tensor1));
 
@@ -156,8 +156,8 @@ namespace YoloV3.ONNXRuntime
 
         private static float[] ImageToFloats(SKImage image)
         {
-            int width = 416;
-            int height = 416;
+            int width = Constants.YoloImage.Width;
+            int height = Constants.YoloImage.Height;
             var imageInfo = new SKImageInfo(width, height);
             var bytes = new byte[imageInfo.BytesSize];
             var pixelBuffer = IntPtr.Zero;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using SkiaSharp;
 using YoloV3.ONNXRuntime;
 
@@ -17,7 +18,7 @@ namespace Example
                 var skImage = SKImage.FromEncodedData(new MemoryStream(File.ReadAllBytes(image)));
                 var result = _yoloV3Onnx.Detect(skImage);
 
-                var skImageResult = skImage.Resize(416,416).DrawRectangles(result);
+                var skImageResult = skImage.Resize(Constants.YoloImage.Width,Constants.YoloImage.Height).DrawRectangles(result);
                 skImageResult.SaveToFile($"{Guid.NewGuid()}.png");
             }
         }

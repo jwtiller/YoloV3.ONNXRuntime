@@ -7,8 +7,6 @@ namespace YoloV3.ONNXRuntime.Models
 {
     public class YoloBox
     {
-        private const int imageWidth = 416;
-        private const int imageHeight = 416;
 
         public string Label { get; private set; }
         public float BoxConfidence { get; private set; }
@@ -28,8 +26,8 @@ namespace YoloV3.ONNXRuntime.Models
         {
             get
             {
-                var cellWidth = (int)imageWidth / columns;
-                var cellHeight = (int)imageHeight / rows;
+                var cellWidth = (int)Constants.YoloImage.Width / columns;
+                var cellHeight = (int)Constants.YoloImage.Height / rows;
 
                 var w = (int)(Math.Exp(modelWidth) * cellWidth * anchors[box * 2]);
                 var h = (int)(Math.Exp(modelHeight) * cellHeight * anchors[box * 2 + 1]);

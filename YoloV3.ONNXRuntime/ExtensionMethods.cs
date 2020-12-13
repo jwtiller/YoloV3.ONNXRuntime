@@ -30,7 +30,7 @@ namespace YoloV3.ONNXRuntime
 
         public static SKImage DrawRectangles(this SKImage image, IList<YoloBoxRectangle> rectangles)
         {
-            var surface = SKSurface.Create(new SKImageInfo(416, 416));
+            var surface = SKSurface.Create(new SKImageInfo(Constants.YoloImage.Width, Constants.YoloImage.Height));
             var canvas = surface.Canvas;
             canvas.DrawImage(image, 0, 0);
             var paint = new SKPaint {IsAntialias = true, Color = SKColor.Parse("#f42069"), Style = SKPaintStyle.Stroke};
