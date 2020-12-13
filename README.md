@@ -1,7 +1,8 @@
 # YoloV3.ONNXRuntime
 Library to run YOLOV3 onnx models with [onnxruntime](https://github.com/microsoft/onnxruntime) and [skiasharp](https://github.com/mono/SkiaSharp).
 
-Pretrained model available at https://github.com/onnx/models/blob/master/vision/object_detection_segmentation/yolov3/model/yolov3-10.onnx
+Pretrained onnx-model, original yolov3 weights and python converter-script available at
+https://drive.google.com/drive/folders/1O2wlepzavB34OIIiiL42TLZ_Hvmu-J7E?usp=sharing
 
 ## Known issues / remaining tasks
 1. bounding boxes are not accurate
