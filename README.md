@@ -4,10 +4,6 @@ Library to run YOLOV3 onnx models with [onnxruntime](https://github.com/microsof
 Pretrained onnx-model, original yolov3 weights and python converter-script available at
 https://drive.google.com/drive/folders/1O2wlepzavB34OIIiiL42TLZ_Hvmu-J7E?usp=sharing
 
-## Known issues / remaining tasks
-1. bounding boxes are not accurate
-2. create nuget package
-
 
 ## Roadmap
 - Finsish library
